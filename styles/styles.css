@@ -78,6 +78,53 @@
 
         /* -------------------------------------------------------------------------------*/
 
+        /* Contenedor principal */
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .prop {
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+        }
+
+        .prop h1 {
+            font-size: clamp(2rem, 6vw, 4rem);
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .prop p {
+            font-size: clamp(1rem, 3vw, 2.5rem);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .btn-prop {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-prop:hover {
+            background: #c0392b;
+        }
+
+        /* -------------------------------------------------------------------------------*/
+
+        /* Footer */
         footer {
             background: var(--primary-color);
             color: white;
@@ -107,7 +154,7 @@
                 padding: 2rem;
             }
 
-            .hero {
+            .prop {
                 padding: 4rem 2rem;
             }
 
@@ -120,9 +167,6 @@
                 text-align: left;
             }
 
-            .image-placeholder {
-                height: 250px;
-            }
         }
 
         /* DESKTOP - 1024px y más */
@@ -131,7 +175,7 @@
                 padding: 3rem;
             }
 
-            .hero {
+            .prop {
                 padding: 5rem 3rem;
             }
 
@@ -139,18 +183,15 @@
                 grid-template-columns: repeat(3, 1fr);
             }
 
-            .image-placeholder {
-                height: 300px;
-            }
         }
 
         /* DESKTOP GRANDE - 1440px y más */
         @media (min-width: 1440px) {
-            .hero h1 {
+            .prop h1 {
                 font-size: 4rem;
             }
             
-            .hero p {
+            .prop p {
                 font-size: 1.5rem;
             }
         }
