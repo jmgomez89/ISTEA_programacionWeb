@@ -24,20 +24,32 @@
     </header>
     <!-- Contenido principal -->
      <main class="container">
-        <!-- Detalle del carrito -->
-        <section class="cart-detail" >
-            <h1>Carrito de Compras</h1>
+        <section class="cart" id="start">
             <div class="cart-items">
                 <div class="cart-item">
                     <img src="/img/celular.jpg" alt="Celular Motorola G05 4GB 128GB">
                     <div class="item-info">
                         <h2>Celular Motorola G05 4GB 128GB</h2>
-                        <p class="price">$158.000.-</p>
-                        <p>Cantidad: 1</p>
                     </div>
                 </div>
+                <div class="cart-item-quantity">
+                    <div class="btn-cart-add">+</div>
+                    <div class="btn-cart-q">Cantidad: 1</div>
+                    <div class="btn-cart-del">-</div>
+                </div>
             </div>
-        
+            
+            <div class="cart-total">
+                <h3>Subtotal (1 producto): $158.000.-</h3>
+                <h3>Envío: $3.500.-</h3>
+                <h2>Total: $161.500.-</h2>  
+            </div>
+        <!-- Botones -->
+            <a href="#products" class="btn-cart-back">Seguir comprando</a>
+            <a href="#products" class="btn-cart-buy">Comprar</a>
+        </section>
+        <!-- Detalle del carrito -->
+
      </main>
     <!-- Footer -->
     <footer id="contact">
