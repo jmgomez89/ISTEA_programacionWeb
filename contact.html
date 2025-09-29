@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce</title>
+    <link rel="icon" href="/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+    <!-- Header  -->
+    <header>
+        <div class="header-content">
+            <div class="logo">E-Commerce</div>
+            <img class="hamburguer" src="/img/menu.png">
+            <nav class="header-content-nav">
+                <ul>
+                    <li><a href="/index.html">Inicio</a></li>
+                    <li><a href="#products">Productos</a></li>
+                    <li><a href="/contact.html">Contacto</a></li>
+                    <li><a href="/cart.html"><img src="/img/cart.png" alt="shopping cart" ></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Contenido principal -->
+     <main class="container">
+        <!-- Formulario de contacto -->
+         <section class="contact">
+            <div class="contact-header">
+                <h1>Contactanos</h1>
+                <p>Estamos acá para ayudarte. Escribinos.</p>
+            </div>
+            <form class="contact-form">
+                <div class="contact-form-container">
+                    <div class="contact-form-inputs">
+                        <label for="nombre">Nombre <span>*</span></label>
+                        <input 
+                            type="text" 
+                            id="nombre" 
+                            name="nombre" 
+                            class="form-control" 
+                            placeholder="Tu nombre"
+                            required
+                        >
+                    </div>
+
+                    <div class="contact-form-inputs">
+                        <label for="apellido">Apellido <span>*</span></label>
+                        <input 
+                            type="text" 
+                            id="apellido" 
+                            name="apellido" 
+                            class="form-control" 
+                            placeholder="Tu apellido"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="contact-form-inputs">
+                    <label for="email">Email <span>*</span></label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-control" 
+                        placeholder="tucorreo@ejemplo.com"
+                        required
+                    >
+                </div>
+
+                <div class="contact-form-inputs">
+                    <label for="telefono">Teléfono</label>
+                    <input 
+                        type="tel" 
+                        id="telefono" 
+                        name="telefono" 
+                        class="form-control" 
+                        placeholder="+54 11 1234-5678"
+                    >
+                </div>
+
+                <div class="contact-form-inputs">
+                    <label for="asunto">Asunto <span>*</span></label>
+                    <input 
+                        type="text" 
+                        id="asunto" 
+                        name="asunto" 
+                        class="form-control" 
+                        placeholder="¿En qué podemos ayudarte?"
+                        required
+                    >
+                </div>
+
+                <div class="contact-form-inputs">
+                    <label for="mensaje">Mensaje <span>*</span></label>
+                    <textarea 
+                        id="mensaje" 
+                        name="mensaje" 
+                        class="form-control" 
+                        placeholder="Escribe tu mensaje aquí..."
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="btn-contact-send">Enviar Mensaje</button>
+          </form>
+         </section>
+     </main>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ISTEA - Programación Web.</p>
+        <p>
+            📧 jmgomezn8@gmail.com 
+        </p>
+    </footer>
+</body>
+</html>
