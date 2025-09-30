@@ -41,7 +41,7 @@
         }
 
         .logo {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-size: 1.5rem;
             font-weight: bold;
         }
 
@@ -107,13 +107,13 @@
         }
 
         .prop h1 {
-            font-size: clamp(2rem, 6vw, 4rem);
+            font-size: 2rem;
             color: white;
             margin-bottom: 1rem;
         }
 
         .prop p {
-            font-size: clamp(1rem, 3vw, 2.5rem);
+            font-size: 1.5rem;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -274,11 +274,11 @@
 
         .contact-header{
             border-bottom: #2c3e50 1px solid;
-            width: 30rem;
+            width: 15rem;
         }
 
         .contact-header h1{
-            font-size: 3rem;
+            font-size: 1.5rem;
             color: white;
             margin-bottom: 1rem;
             margin-top: 1rem;
@@ -289,7 +289,7 @@
         }
 
         .contact-form{
-            width: 30rem;
+            width: 15rem;
             gap: 1rem;
             margin-top: 1rem;
             margin-bottom: 1rem;
@@ -307,7 +307,7 @@
             padding: 0.5rem;
             border: none;
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: 0.7rem;
         }
 
         .contact-form-inputs label span {
@@ -351,7 +351,7 @@
             align-items: center;
             border-bottom: #2c3e50 1px solid;
             margin-bottom: 1rem;
-            width: 18rem;
+            width: 17rem;
         }
 
         .item-info, .item.price {
@@ -365,7 +365,7 @@
         }
 
         .cart h1 {
-            font-size: clamp(2rem, 6vw, 4rem);
+            font-size: 2rem;
             color: white;
             margin-bottom: 1.5rem;
         }
@@ -398,7 +398,7 @@
             margin-top: 1rem;
             border-bottom: #2c3e50 1px solid;
             margin-bottom: 1rem;
-            width: 18rem;
+            width: 17rem;
         }
 
         .cart-total-sub, .cart-total-ship, .cart-total-sum {
@@ -470,6 +470,25 @@
 
         /* TABLET - 768px y más */
         @media (min-width: 768px) {
+
+
+            .contact-header{
+                width: 25rem;
+            }
+
+            .contact-header h1{
+                font-size: 2.5rem;
+            }
+
+            .contact-form{
+                width: 20rem;
+            }
+
+
+            .logo {
+                font-size: 2rem;
+            }
+
             .prop {
                 display: block;
             }
@@ -524,6 +543,41 @@
 
         /* DESKTOP - 1024px y más */
         @media (min-width: 1024px) {
+
+
+            .header-content-nav a{
+                font-size: 1.2rem;
+            }
+
+            .contact-header{
+                width: 30rem;
+            }
+
+            .contact-header h1{
+                font-size: 3rem;
+            }
+
+            .contact-form{
+                width: 25rem;
+                font-size: 1.2rem;
+            }
+            
+            .cart h1 {
+            font-size: 3rem;
+            }
+
+            .prop h1 {
+            font-size: 3rem;
+            }
+
+            .prop p {
+            font-size: 2rem;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
             .container {
                 padding: 3rem;
             }
@@ -563,6 +617,40 @@
 
         /* DESKTOP GRANDE - 1440px y más */
         @media (min-width: 1440px) {
+
+            .header-content-nav a{
+                font-size: 1.5rem;
+            }
+
+            .contact-header{
+                width: 35rem;
+            }
+
+            .contact-header h1{
+                font-size: 3.5rem;
+            }
+
+            .contact-header p{
+                font-size: 1.2rem;
+            }
+
+            .contact-form{
+                width: 30rem;
+                font-size: 1.3rem;
+            }
+
+            .cart h1 {
+            font-size: 4rem;
+            }
+
+            .logo {
+                font-size: 2.8rem;
+            }
+
+            .prop p {
+            font-size: 3.5rem;
+            }
+
             .prop h1 {
                 font-size: 4rem;
             }
