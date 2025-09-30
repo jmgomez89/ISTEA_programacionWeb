@@ -131,7 +131,7 @@
 
         .products-cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));    /*cada columna tiene mínimo 280px de ancho, pero puede crecer hasta ocupar una fracción del espacio disponible*/
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));    
             gap: 2rem;
             margin: 3rem 0;
         }
