@@ -22,6 +22,9 @@
                 </ul>
             </nav>
         </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar productos...">
+        </div>
     </header>
     <!-- Contenido principal -->
      <main class="container">
@@ -34,48 +37,13 @@
 
         <!-- Cards -->
          <section id="products">
-            
-            <div class="products-cards-grid">
-                <div class="product-card">
-                    <img src="./img/celular.jpg">
-                    <div class="product-card-name">Celular Motorola G05 4GB 128GB</div>
-                    <div class="product-card-price">$158.000.-</div>
-                    <a href="./product.html" class="product-card-btn">Ver Producto</a>
-                </div>
-                <div class="product-card">
-                    <img src="./img/auriculares.jpg">
-                    <div class="product-card-name">Auriculares Inalámbricos Blackpoint</div>
-                    <div class="product-card-price">$58.000.-</div>
-                    <a href="./product.html" class="product-card-btn">Ver Producto</a>
-                </div>
-                <div class="product-card">
-                    <img src="./img/freidora.jpg">
-                    <div class="product-card-name">Freidora de Aire Atma</div>
-                    <div class="product-card-price">$258.000.-</div>
-                    <a href="./product.html" class="product-card-btn">Ver Producto</a>
-                </div>
-                <div class="product-card">
-                    <img src="./img/lavarropas.jpg">
-                    <div class="product-card-name">Lavarropas Automático Philco</div>
-                    <div class="product-card-price">$550.000.-</div>
-                    <a href="./product.html" class="product-card-btn">Ver Producto</a>
-                </div>
-                <div class="product-card">
-                    <img src="./img/notebook.jpg">
-                    <div class="product-card-name">Notebook Celeron 14.1" 4GB 128 GB SSD Philco</div>
-                    <div class="product-card-price">$1.258.000.-</div>
-                    <a href="./product.html" class="product-card-btn">Ver Producto</a>
-                </div>
-                <div class="product-card">
-                    <img src="./img/play.jpg">
-                    <div class="product-card-name">Play station 5</div>
-                    <div class="product-card-price">$1.600.000.-</div>
-                    <a href="./product.html" class="product-card-btn">Ver Producto</a>
-                </div>
+            <div id="products-cards-grid">
+                <!-- Productos renderizados con JS -->
             </div>
         </section>
      </main>
     <!-- Footer -->
+    <script src="./app.js"></script>
     <footer>
         <p>&copy; 2025 ISTEA - Programación Web.</p>
         <p>
