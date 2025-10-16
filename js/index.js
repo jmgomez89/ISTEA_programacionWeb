@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const searchTerm = e.target.value;
           filterAndRenderProducts(searchTerm);
       });
-      
+
     }
 
 
@@ -23,10 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
       hamburgerMenu.classList.remove('active');
     });
 
+    document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('product-card-addbtn')) {
+      e.preventDefault(); 
+
+      const productId = parseInt(e.target.dataset.id);
+      addToCart(productId); 
+
+      window.location.href = './cart.html';
+    }});
 
 });
-
-
 
 
 
@@ -46,7 +53,7 @@ function cardProducts(products) {
                 <img src=${products.image} alt=${products.name}>
                 <div class="product-card-name">${products.name}</div>
                 <div class="product-card-price">${formatPrice(products.price)}.-</div>
-                <a href="./cart.html" class="product-card-addbtn" data-id="${products.id}">🛒 Agregar al Carrito</a>
+                <a class="product-card-addbtn" data-id="${products.id}">🛒 Agregar al Carrito</a>
                 <a href="./product.html?id=${products.id}" class="product-card-btn">🔍 Ver Producto</a>
             </div> `
 }
@@ -55,6 +62,8 @@ function renderProducts() {
 
   productsContainer.innerHTML = products.map(cardProducts).join('');
 } 
+
+//Filtro de productos
 
 function filterAndRenderProducts(searchTerm) {
 
@@ -78,3 +87,28 @@ function filterAndRenderProducts(searchTerm) {
 }
 
 
+//Carrito de compras
+
+function addToCart(productId) {
+
+  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+
+  const existingItem = cart.find(item => item.id === productId);
+  
+  if (existingItem) {
+    existingItem.quantity = (existingItem.quantity || 1) + 1;
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1
+    });
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
