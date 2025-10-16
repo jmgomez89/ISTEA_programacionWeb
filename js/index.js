@@ -99,7 +99,7 @@ function addToCart(productId) {
   const existingItem = cart.find(item => item.id === productId);
   
   if (existingItem) {
-    existingItem.quantity = (existingItem.quantity || 1) + 1;
+    existingItem.quantity += 1;
   } else {
     cart.push({
       id: product.id,
