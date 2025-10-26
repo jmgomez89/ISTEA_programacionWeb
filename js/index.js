@@ -1,8 +1,9 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     
+    await fetchProducts();
 
     if (window.location.pathname === '/' || window.location.pathname.endsWith('/index.html')) {
-      
+
       renderProducts();
 
       searchInput.addEventListener('input', (e) => { 
@@ -92,6 +93,7 @@ function filterAndRenderProducts(searchTerm) {
 function addToCart(productId) {
 
   let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  console.log(cart);
 
   const product = products.find(p => p.id === productId);
   if (!product) return;

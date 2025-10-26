@@ -1,13 +1,5 @@
 //Data
 
-const products = [
-    { id: 1, name: "Celular Motorola G05 4GB 128GB", price: 158000, image: "./img/celular.jpg", details: "Disfruta de un rendimiento excepcional con el Celular Motorola G05, que cuenta con 4GB de RAM y 128GB de almacenamiento interno. Perfecto para multitarea y almacenamiento de tus aplicaciones y archivos favoritos." },
-    { id: 2, name: "Auriculares Inalámbricos Blackpoint", price: 58000, image: "./img/auriculares.jpg", details: "Experimenta la libertad del sonido sin cables con los Auriculares Inalámbricos Blackpoint. Con una calidad de audio superior y un diseño cómodo, son ideales para escuchar música y atender llamadas en cualquier lugar." },
-    { id: 3, name: "Freidora de Aire Atma", price: 258000, image: "./img/freidora.jpg", details: "Cocina de manera saludable y deliciosa con la Freidora de Aire Atma. Con tecnología de circulación de aire caliente, puedes preparar tus comidas favoritas con menos aceite, manteniendo el sabor y la textura crujiente." },
-    { id: 4, name: "Lavarropas Automático Philco", price: 550000, image: "./img/lavarropas.jpg", details: "Facilita tus tareas de lavandería con el Lavarropas Automático Philco. Con múltiples programas de lavado y una capacidad adecuada, este lavarropas garantiza ropa limpia y fresca en cada ciclo." },
-    { id: 5, name: "Notebook Celeron 14.1 4GB 128 GB SSD Philco", price: 1258000, image: "./img/notebook.jpg", details: "Trabaja y estudia con eficiencia con la Notebook Celeron 14.1 de Philco. Equipado con 4GB de RAM y un rápido SSD de 128GB, esta laptop es perfecta para tareas diarias, navegación web y aplicaciones de productividad." },
-    { id: 6, name: "Play station 5", price: 1600000, image: "./img/play.jpg", details: "Sumérgete en el mundo del gaming con la PlayStation 5. Con gráficos de última generación, tiempos de carga ultrarrápidos y una amplia biblioteca de juegos, la PS5 ofrece una experiencia de juego inigualable para todos los entusiastas." }
-];
 
 const productsContainer = document.getElementById('products-cards-grid');
 const searchInput = document.getElementById('search-input');
@@ -18,3 +10,47 @@ const closeHamburgerMenu = document.getElementById('close-btn');
 const urlParams = new URLSearchParams(window.location.search);
 const productId = parseInt(urlParams.get('id'));
 const productDetailContainer = document.getElementById('product-detail');
+let products = [];
+
+const AIRTABLE_API_KEY = "pat3c8FaWrNy5AZoF.6b0864f4af38bf8285fe1e5deb9c73317dfcd1d33904e3388e7f266831a5e533";
+const BASE_ID = "appnDqVrWQ7c1go0B";
+const TABLE_NAME = "Products";
+
+async function fetchProducts() {
+  try {
+    const response = await fetch(
+      `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`,
+      {
+        headers: {
+          Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Error ${response.status}: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    
+    products = data.records.map(record => {
+      const fields = record.fields;
+      return {
+        id: fields.Id, // o usa record.id si usas el ID de Airtable
+        name: fields.Name || 'Sin nombre',
+        price: fields.Price || 0,
+        image: fields.Image && fields.Image[0] ? fields.Image[0].url : './img/placeholder.jpg',
+        details: fields.Details || 'Sin descripción'
+      };
+    });
+
+    console.log('Productos cargados desde Airtable:', products);
+
+    return products;
+  } catch (error) {
+    console.error('Error al cargar productos desde Airtable:', error);
+    products = []; 
+  }
+};
+
