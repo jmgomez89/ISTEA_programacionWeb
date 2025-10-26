@@ -428,6 +428,15 @@
             background: #c0392b;
         }
 
+        .form-message success, .form-message error {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .form-message error {
+            color: var(--accent-color);
+        }
+
         /* Cart page */
 
         .cart {

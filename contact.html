@@ -46,14 +46,14 @@
                 <h1>Contactanos</h1>
                 <p>Estamos acá para ayudarte. Escribinos.</p>
             </div>
-            <form class="contact-form">
+            <form class="contact-form" method="post" id="contact-form">
                 <div class="contact-form-container">
                     <div class="contact-form-inputs">
-                        <label for="nombre">Nombre <span>*</span></label>
+                        <label for="name">Nombre <span>*</span></label>
                         <input 
                             type="text" 
-                            id="nombre" 
-                            name="nombre" 
+                            id="name" 
+                            name="name" 
                             class="form-control" 
                             placeholder="Tu nombre"
                             required
@@ -61,11 +61,11 @@
                     </div>
 
                     <div class="contact-form-inputs">
-                        <label for="apellido">Apellido <span>*</span></label>
+                        <label for="lastName">Apellido <span>*</span></label>
                         <input 
                             type="text" 
-                            id="apellido" 
-                            name="apellido" 
+                            id="lastName" 
+                            name="lastName" 
                             class="form-control" 
                             placeholder="Tu apellido"
                             required
@@ -86,22 +86,22 @@
                 </div>
 
                 <div class="contact-form-inputs">
-                    <label for="telefono">Teléfono</label>
+                    <label for="phone">Teléfono</label>
                     <input 
                         type="tel" 
-                        id="telefono" 
-                        name="telefono" 
+                        id="phone" 
+                        name="phone" 
                         class="form-control" 
                         placeholder="+54 11 1234-5678"
                     >
                 </div>
 
                 <div class="contact-form-inputs">
-                    <label for="asunto">Asunto <span>*</span></label>
+                    <label for="matter">Asunto <span>*</span></label>
                     <input 
                         type="text" 
-                        id="asunto" 
-                        name="asunto" 
+                        id="matter" 
+                        name="matter" 
                         class="form-control" 
                         placeholder="¿En qué podemos ayudarte?"
                         required
@@ -109,24 +109,23 @@
                 </div>
 
                 <div class="contact-form-inputs">
-                    <label for="mensaje">Mensaje <span>*</span></label>
+                    <label for="message">Mensaje <span>*</span></label>
                     <textarea 
-                        id="mensaje" 
-                        name="mensaje" 
+                        id="message" 
+                        name="message" 
                         class="form-control" 
                         placeholder="Escribe tu mensaje aquí..."
                         required
                     ></textarea>
                 </div>
-
+                <div id="form-message"></div>
                 <button type="submit" class="btn-contact-send">Enviar Mensaje</button>
           </form>
          </section>
      </main>
     <!-- Footer -->
-    <script src="./js/index.js"></script>
     <script src="./js/data.js"></script>
-    <script src="./js/product-detail.js"></script>
+    <script src="./js/contact.js"></script>
     <footer>
         <p>&copy; 2025 ISTEA - Programación Web.</p>
         <p>
