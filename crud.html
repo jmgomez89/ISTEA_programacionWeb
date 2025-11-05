@@ -40,91 +40,84 @@
     </header>
     <!-- Contenido principal -->
      <main class="container">
-        <!-- Formulario de contacto -->
-         <section class="contact">
-            <div class="contact-header">
-                <h1>Contactanos</h1>
-                <p>Estamos acá para ayudarte. Escribinos.</p>
+        <!-- Administración -->
+         <section class="crud">
+            <div class="crud-header">
+                <h1>ABM de Productos</h1>
             </div>
-            <form class="contact-form" method="post" id="contact-form">
+            <section id="products">
+                <div id="products-cards-grid">
+                    <!-- Productos renderizados con JS -->
+                </div>
+                <button  class="btn-product-create" id="btn-product-create">Nuevo Producto</button>
+            </section>
+            <form class="crud-form" method="post" id="crud-form">
 
-                <div class="contact-form-inputs">
-                    <label for="name">Nombre <span>*</span></label>
+                <div class="crud-form-inputs">
+                    <label for="product-name">Nombre <span>*</span></label>
                     <input 
                         type="text" 
-                        id="name" 
-                        name="name" 
-                        class="form-control" 
-                        placeholder="Tu nombre"
+                        id="product-name" 
+                        name="product-name" 
+                        class="crud-control" 
+                        placeholder="Nombre del producto"
                         required
                     >
                 </div>
 
-                <div class="contact-form-inputs">
-                    <label for="lastName">Apellido <span>*</span></label>
+                <div class="crud-form-inputs">
+                    <label for="product-stock">Stock <span>*</span></label>
                     <input 
-                        type="text" 
-                        id="lastName" 
-                        name="lastName" 
-                        class="form-control" 
-                        placeholder="Tu apellido"
+                        type="number" 
+                        id="product-stock" 
+                        name="product-stock" 
+                        class="crud-control" 
                         required
                     >
                 </div>
 
-                <div class="contact-form-inputs">
-                    <label for="email">Email <span>*</span></label>
+
+                <div class="crud-form-inputs">
+                    <label for="product-image">Imagen del Producto <span>*</span></label>
                     <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        class="form-control" 
-                        placeholder="tucorreo@ejemplo.com"
+                        type="file" 
+                        id="product-image" 
+                        name="product-image" 
+                        class="crud-control" 
                         required
+                        accept="image/*" 
                     >
                 </div>
 
-                <div class="contact-form-inputs">
-                    <label for="phone">Teléfono</label>
+                <div class="crud-form-inputs">
+                    <label for="producto-price">Precio</label>
                     <input 
-                        type="tel" 
-                        id="phone" 
-                        name="phone" 
-                        class="form-control" 
-                        placeholder="+54 11 1234-5678"
+                        type="number" 
+                        id="producto-price" 
+                        name="producto-price" 
+                        class="crud-control" 
                     >
                 </div>
 
-                <div class="contact-form-inputs">
-                    <label for="matter">Asunto <span>*</span></label>
-                    <input 
-                        type="text" 
-                        id="matter" 
-                        name="matter" 
-                        class="form-control" 
-                        placeholder="¿En qué podemos ayudarte?"
-                        required
-                    >
-                </div>
-
-                <div class="contact-form-inputs">
-                    <label for="message">Mensaje <span>*</span></label>
+                <div class="crud-form-inputs">
+                    <label for="product-details">Detalles del Producto <span>*</span></label>
                     <textarea 
-                        id="message" 
-                        name="message" 
-                        class="form-control" 
-                        placeholder="Escribe tu mensaje aquí..."
+                        id="product-details" 
+                        name="product-details" 
+                        class="crud-control" 
+                        placeholder="Escribe aquí las características del producto..."
                         required
                     ></textarea>
                 </div>
                 <div id="form-message"></div>
-                <button type="submit" class="btn-contact-send">Enviar Mensaje</button>
+                <button type="submit" class="btn-product-save" id="btn-product-save">Guardar Producto</button>
+                <button class="btn-product-cancel" id="btn-product-cancel">Cancelar</button>
           </form>
          </section>
      </main>
     <!-- Footer -->
     <script src="./js/data.js"></script>
-    <script src="./js/contact.js"></script>
+    <script src="./js/crud.js"></script>
     <footer>
         <p>&copy; 2025 ISTEA - Programación Web.</p>
         <p>

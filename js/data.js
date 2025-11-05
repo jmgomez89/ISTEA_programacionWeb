@@ -12,6 +12,11 @@ const productId = parseInt(urlParams.get('id'));
 const productDetailContainer = document.getElementById('product-detail');
 const form = document.getElementById('contact-form');
 const messageDiv = document.getElementById('form-message');
+const buttonNew = document.getElementById('btn-product-create');
+const buttonBack = document.getElementById('btn-product-cancel');
+const sectionProducts = document.getElementById('products');
+const crudForm = document.getElementById('crud-form');
+let editingRecordId = null;
 let products = [];
 
 const AIRTABLE_API_KEY = "pat3c8FaWrNy5AZoF.6b0864f4af38bf8285fe1e5deb9c73317dfcd1d33904e3388e7f266831a5e533";
@@ -19,6 +24,7 @@ const BASE_ID = "appnDqVrWQ7c1go0B";
 const TABLE_NAME = "Products";
 const CONTACT_TABLE_NAME = "Contact";
 const BASE_ID_CONTACT = "appnDqVrWQ7c1go0B";
+const IMGBB_API_KEY = "23f93f2bc52f0f1585aaff7f1efeccd0";
 
 //Fetch de productos desde Airtable
 
@@ -43,6 +49,7 @@ async function fetchProducts() {
     products = data.records.map(record => {
       const fields = record.fields;
       return {
+        recordId: record.id,
         id: fields.Id, 
         name: fields.Name || 'Sin nombre',
         price: fields.Price || 0,
@@ -65,36 +72,107 @@ async function fetchProducts() {
 
 async function submitContactForm(contactData) {
   try {
-    const response = await fetch(
-      `https://api.airtable.com/v0/${BASE_ID_CONTACT}/${CONTACT_TABLE_NAME}`, // ← nombre de tu tabla
-      {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${AIRTABLE_API_KEY}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          fields: {
-            Name: contactData.name,
-            LastName: contactData.lastName,
-            Email: contactData.email,
-            Phone: contactData.phone,
-            Matter: contactData.matter,
-            Message: contactData.message,
-          }
-        })
-      }
-    );
+      const response = await fetch(
+        `https://api.airtable.com/v0/${BASE_ID_CONTACT}/${CONTACT_TABLE_NAME}`, // ← nombre de tu tabla
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            fields: {
+              Name: contactData.name,
+              LastName: contactData.lastName,
+              Email: contactData.email,
+              Phone: contactData.phone,
+              Matter: contactData.matter,
+              Message: contactData.message,
+            }
+          })
+        }
+      );
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(`Error ${response.status}: ${errorData.error?.message || 'Desconocido'}`);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Error ${response.status}: ${errorData.error?.message || 'Desconocido'}`);
+      }
+
+      return await response.json(); 
+    }
+    catch (error) {
+      console.error('Error al enviar el formulario:', error);
+      throw error;
     }
 
-    return await response.json(); 
-  } catch (error) {
-    console.error('Error al enviar el formulario:', error);
-    throw error;
+}
+
+// Cargar productos en Airtable
+
+async function submitCrudForm(productData) {
+  let imageUrl = null;
+  if (productData.image) {
+    try {
+      imageUrl = await uploadImageToImgBB(productData.image);
+    } catch (uploadError) {
+      console.error('Falló la subida de la imagen:', uploadError);
+      throw new Error('No se pudo subir la imagen. Verifica el archivo e inténtalo de nuevo.');
+    }
   }
 
-}
+  try {
+      const response = await fetch(
+        `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`, 
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            fields: {
+              Name: productData.name,
+              Price: Number(productData.price),
+              Stock: Number(productData.stock),
+              Image: imageUrl ? [{ url: imageUrl }] : [],
+              Details: productData.details
+            }
+          })
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Error ${response.status}: ${errorData.error?.message || 'Desconocido'}`);
+      }
+
+      return await response.json(); 
+    }
+    catch (error) {
+      console.error('Error al enviar el formulario:', error);
+      throw error;
+    }
+
+};
+
+
+//Subir imagen a imgbb
+
+async function uploadImageToImgBB(file) {
+  if (!file) return null;
+
+  const formData = new FormData();
+  formData.append('image', file);
+
+  const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+    method: 'POST',
+    body: formData
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(`Error al subir imagen: ${errorData.error?.message || 'Desconocido'}`);
+  }
+  const result = await response.json();
+  return result.data.url; // URL pública de la imagen
+};

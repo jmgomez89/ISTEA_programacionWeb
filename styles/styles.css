@@ -437,6 +437,90 @@
             color: var(--accent-color);
         }
 
+
+        /* Crud page */
+
+        .crud {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .crud-header{
+            border-bottom: #2c3e50 1px solid;
+            width: 15rem;
+        }
+
+        .crud-header h1{
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+
+        .crud-header p{
+           margin-bottom: 1rem;
+        }
+
+        .crud-form{
+            width: 15rem;
+            gap: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .crud-form-inputs{
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+
+        .crud-control{
+            width: 100%;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.7rem;
+        }
+
+        .crud-form-inputs label span {
+            color: var(--text-color);
+        }
+
+        .btn-product-save, .btn-product-cancel, .btn-product-create {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+            width: 200px;
+            margin-bottom: 1rem;
+        }
+
+        .btn-product-save, .btn-product-create, .btn-product-cancel:hover {
+            background: #c0392b;
+        }
+
+        .form-message success, .form-message error {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .form-message error {
+            color: var(--accent-color);
+        }
+
         /* Cart page */
 
         .cart {
@@ -591,10 +675,21 @@
                 font-size: 2.5rem;
             }
 
+            .crud-header{
+                width: 25rem;
+            }
+
+            .crud-header h1{
+                font-size: 2.5rem;
+            }
+
             .contact-form{
                 width: 20rem;
             }
 
+            .crud-form{
+                width: 20rem;
+            }
 
             .logo {
                 font-size: 2rem;
@@ -670,6 +765,19 @@
             }
 
             .contact-form{
+                width: 25rem;
+                font-size: 1.2rem;
+            }
+
+            .crud-header{
+                width: 30rem;
+            }
+
+            .crud-header h1{
+                font-size: 3rem;
+            }
+
+            .crud-form{
                 width: 25rem;
                 font-size: 1.2rem;
             }

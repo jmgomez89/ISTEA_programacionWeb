@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       await submitContactForm({ name, lastName, email, phone, matter, message });
-      showMessage('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.', 'success');
+      showMessage('¡Mensaje enviado con éxito! Nos pondremos en contacto lo antes posible.', 'success');
       form.reset(); 
     } catch (error) {
       console.error('Error:', error);
-      showMessage('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.', 'error');
+      showMessage('Hubo un error al enviar el mensaje. Por favor, intentalo de nuevo.', 'error');
     } 
   });
 
