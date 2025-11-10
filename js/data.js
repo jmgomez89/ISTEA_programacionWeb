@@ -176,3 +176,95 @@ async function uploadImageToImgBB(file) {
   const result = await response.json();
   return result.data.url; // URL pública de la imagen
 };
+
+//Eliminar producto de Airtable
+
+async function deleteProductFromAirtable(recordId) {
+  if (!recordId) {
+    throw new Error('ID de registro no proporcionado');
+  }
+
+  const response = await fetch(
+    `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}/${recordId}`,
+    {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    }
+  );
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    const message = errorData.error?.message || `Error ${response.status}`;
+    throw new Error(`No se pudo eliminar el producto: ${message}`);
+  }
+
+  return;
+
+};
+
+//Traer info de Airtable para renderizar formulario
+
+
+async function fetchProductFromAirtable(recordId) {
+    if (!recordId) {
+      throw new Error('ID de registro no proporcionado');
+    }
+
+    const response = await fetch(
+      `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}/${recordId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${AIRTABLE_API_KEY}`
+        }
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      const message = errorData.error?.message || `Error ${response.status}`;
+      throw new Error(`No se pudo cargar el producto: ${message}`);
+    }
+
+    const data = await response.json();
+    return data.fields; 
+
+};
+
+//Actualizar producto en Airtable
+
+async function updateProductInAirtable(recordId, fields) {
+    if (!recordId) {
+      throw new Error('ID de registro no proporcionado');
+    }
+
+    const response = await fetch(
+      `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}/${recordId}`,
+      {
+        method: 'PATCH', 
+        headers: {
+          Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ fields })
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      const message = errorData.error?.message || `Error ${response.status}`;
+      throw new Error(`No se pudo actualizar el producto: ${message}`);
+    }
+
+    return; 
+
+};
+
+//Mostrar mensaje
+
+  function showMessage(text, type) {
+    messageDiv.textContent = text;
+    messageDiv.className = `form-message ${type}`;
+  }

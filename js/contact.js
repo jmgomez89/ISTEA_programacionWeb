@@ -22,9 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } 
   });
 
-  function showMessage(text, type) {
-    messageDiv.textContent = text;
-    messageDiv.className = `form-message ${type}`;
-  }
+
 
 });
+

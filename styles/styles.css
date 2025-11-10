@@ -254,7 +254,7 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
-        .product-card-btn {
+        .product-card-btn, .product-card-btn-delete {
             display: inline-block;
             background: var(--accent-color);
             color: white;
@@ -264,11 +264,11 @@
             transition: background-color 0.3s ease;
         }
 
-        .product-card-btn:hover {
+        .product-card-btn, .product-card-btn-delete:hover {
             background: #c0392b;
         }
         
-        .product-card-addbtn {
+        .product-card-addbtn, .product-card-btn-mod {
             display: inline-block;
             background: var(--accent-color);
             color: white;
@@ -279,7 +279,7 @@
             margin-bottom: 1rem;
         }
 
-        .product-card-addbtn:hover {
+        .product-card-addbtn, .product-card-btn-mod:hover {
             background: #c0392b;
         }
 
