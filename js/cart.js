@@ -40,6 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     });
 
+        //Menú Hamburguesa 
+    hamburger.addEventListener('click', () => {
+      hamburgerMenu.classList.add('active');
+    });
+
+    closeHamburgerMenu.addEventListener('click', () => {
+      hamburgerMenu.classList.remove('active');
+    });
 
 
 });

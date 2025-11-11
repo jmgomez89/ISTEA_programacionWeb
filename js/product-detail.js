@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
 
   updateCartBadge();
-  
+
   await fetchProducts();
 
   const product = products.find(p => p.id === productId);
@@ -19,6 +19,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         `;
 
   productDetailContainer.innerHTML = html;
+
+      //Menú Hamburguesa 
+    hamburger.addEventListener('click', () => {
+      hamburgerMenu.classList.add('active');
+    });
+
+    closeHamburgerMenu.addEventListener('click', () => {
+      hamburgerMenu.classList.remove('active');
+    });
   
 });
 
