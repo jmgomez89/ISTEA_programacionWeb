@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
     
+    updateCartBadge();
+    
     await fetchProducts();
 
     renderProducts();

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  updateCartBadge();
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault(); 

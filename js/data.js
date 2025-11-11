@@ -16,6 +16,10 @@ const buttonNew = document.getElementById('btn-product-create');
 const buttonBack = document.getElementById('btn-product-cancel');
 const sectionProducts = document.getElementById('products');
 const crudForm = document.getElementById('crud-form');
+const cartContainer = document.getElementById('cart');
+const totalCart = document.getElementById('cart-total');
+const cartInfo = document.getElementById('cart-info');
+
 let editingRecordId = null;
 let products = [];
 
@@ -50,7 +54,7 @@ async function fetchProducts() {
       const fields = record.fields;
       return {
         recordId: record.id,
-        id: fields.Id, 
+        stock: fields.Stock, 
         name: fields.Name || 'Sin nombre',
         price: fields.Price || 0,
         image: fields.Image && fields.Image[0] ? fields.Image[0].url : './img/placeholder.jpg',
@@ -268,3 +272,44 @@ async function updateProductInAirtable(recordId, fields) {
     messageDiv.textContent = text;
     messageDiv.className = `form-message ${type}`;
   }
+
+//Carrito de compras (localStorage)
+
+  function getCart() {
+    const data = localStorage.getItem('cart');
+    return data ? JSON.parse(data) : [];
+  }
+
+  function saveCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  function updateCartBadge() {
+    const cart = getCart();
+    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cart-badge').textContent = `🛒 (${total})`;
+  }
+
+  function addToCart(product) {
+  const cart = getCart();
+  const existing = cart.find(item => item.id === product.id);
+
+  if (existing) {
+    if (existing.quantity + 1 > product.stock) {
+      alert(`Solo hay ${product.stock} unidades disponibles de "${product.name}".`);
+      return;
+    }
+    existing.quantity += 1;
+  } else {
+    // Nuevo producto
+    if (product.stock <= 0) {
+      alert('Producto sin stock.');
+      return;
+    }
+    cart.push({ ...product, quantity: 1 });
+  }
+
+  saveCart(cart);
+  updateCartBadge();
+  alert(`${product.name} agregado al carrito.`);
+}

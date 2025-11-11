@@ -277,10 +277,12 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
             margin-bottom: 1rem;
+
         }
 
         .product-card-addbtn, .product-card-btn-mod:hover {
             background: #c0392b;
+            cursor: pointer;
         }
 
         .no-results{
@@ -611,6 +613,7 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
             margin-top: 1rem;
+            margin-bottom: 1rem;
             width: 200px;
         }
 
