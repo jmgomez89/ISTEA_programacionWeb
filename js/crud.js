@@ -73,10 +73,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             await deleteProductFromAirtable(recordId);
             const card = e.target.closest('.product-card');
             if (card) card.remove();
-            showMessage('Producto eliminado con éxito ✅', 'success');
+            showMessage('Producto eliminado con éxito', 'success');
 
             } catch (error) {
-            console.error('Error al eliminar producto:', error);
             showMessage('Error al eliminar el producto.', 'error');
             }
         }
@@ -103,7 +102,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (submitBtn) submitBtn.textContent = 'Actualizar Producto';
             
             } catch (error) {
-            showMessage('🔥 Error al cargar producto para editar:', 'error');
+            showMessage('Error al cargar producto para editar:', 'error');
             }
         }
 

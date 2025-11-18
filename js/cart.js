@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item.quantity++;
         saveCart(cart);
         renderCart();
+        updateCartBadge(); // actualiza el contador global
         return;
     }
     });
