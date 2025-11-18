@@ -269,10 +269,6 @@ async function updateProductInAirtable(recordId, fields) {
 
 //Mostrar mensaje
 
-  // function showMessage(text, type) {
-  //   messageDiv.textContent = text;
-  //   messageDiv.className = `form-message ${type}`;
-  // };
 
 function showMessage(message, type) {
   const messageEl = document.getElementById('global-message');
