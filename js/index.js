@@ -64,9 +64,9 @@ function cardProducts(products) {
                 data-image="${products.image}"
                 data-stock="${products.stock}"
                 ${products.stock <= 0 ? 'disabled' : ''}>
-                ${products.stock <= 0 ? '❌ Sin stock' : '🛒 Agregar'}
+                ${products.stock <= 0 ? '❌ Sin stock' : '🛒 Agregar al Carrito'}
                 </a>
-                <a href="./product.html?id=${products.id}" class="product-card-btn">🔍 Ver Producto</a>
+                <a href="./product.html?id=${products.recordId}" class="product-card-btn">🔍 Ver Producto</a>
             </div> `
 }
 
