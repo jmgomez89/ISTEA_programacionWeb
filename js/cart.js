@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
     const cart = getCart();
 
-    // Botón "-" (disminuir) → clase: btn-cart-add
     if (e.target.classList.contains('btn-cart-add')) {
         const index = e.target.dataset.index;
         const item = cart[index];
@@ -13,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (item.quantity > 1) {
         item.quantity--;
         } else {
-        // Si es 1, eliminamos el ítem
         cart.splice(index, 1);
         }
         
@@ -23,13 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Botón "+" (aumentar) → clase: btn-cart-del
     if (e.target.classList.contains('btn-cart-del')) {
         const index = e.target.dataset.index;
         const item = cart[index];
         
         if (item.quantity + 1 > item.stock) {
-        alert(`Solo hay ${item.stock} unidades disponibles de "${item.name}".`);
+        showMessage(`Solo hay ${item.stock} unidades disponibles de "${item.name}".`, 'warning');
         return;
         }
         
@@ -100,10 +97,3 @@ function renderCart() {
   }
 }
 
-function formatPrice(price) {
-  return new Intl.NumberFormat('es-AR', {
-    style: 'currency',
-    currency: 'ARS',
-    minimumFractionDigits: 0
-  }).format(price);
-}

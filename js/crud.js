@@ -69,19 +69,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
             }
 
-            if (!confirm('¿Seguro que deseas eliminar este producto?')) {
-            return;
-            }
-
             try {
             await deleteProductFromAirtable(recordId);
             const card = e.target.closest('.product-card');
             if (card) card.remove();
-            alert('Producto eliminado con éxito ✅');
+            showMessage('Producto eliminado con éxito ✅', 'success');
 
             } catch (error) {
             console.error('Error al eliminar producto:', error);
-            alert('Error al eliminar el producto. Revisa la consola para más detalles.');
+            showMessage('Error al eliminar el producto.', 'error');
             }
         }
     });
@@ -107,8 +103,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (submitBtn) submitBtn.textContent = 'Actualizar Producto';
             
             } catch (error) {
-            console.error('🔥 Error al cargar producto para editar:', error);
-            alert('No se pudo cargar el producto. Revisa la consola.');
+            showMessage('🔥 Error al cargar producto para editar:', 'error');
             }
         }
 
@@ -159,13 +154,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Renderizado de productos
 
-function formatPrice(price) {
-  return new Intl.NumberFormat('es-AR', {
-    style: 'currency',
-    currency: 'ARS',
-    minimumFractionDigits: 0
-  }).format(price);
-}
 
 function cardProducts(products) { 
   return `

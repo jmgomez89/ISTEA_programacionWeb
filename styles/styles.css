@@ -659,6 +659,80 @@
             margin-top: 0.5rem; opacity: 0.8;
         }
 
+        /* Global Message */
+
+        .global-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 10000;
+            max-width: 90%;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .global-message.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .global-message.hidden {
+            display: none;
+        }
+
+        .global-message.success {
+            background-color: #4caf50; 
+        }
+
+        .global-message.warning {
+            background-color: #ff9800; 
+        }
+
+        .global-message.error {
+            background-color: #f44336; 
+        }
+
+
+        @keyframes slideInDown {
+        from {
+            transform: translate(-50%, -100%);
+            opacity: 0;
+        }
+        to {
+            transform: translate(-50%, 0);
+            opacity: 1;
+        }
+        }
+
+        @keyframes slideOutUp {
+        from {
+            transform: translate(-50%, 0);
+            opacity: 1;
+        }
+        to {
+            transform: translate(-50%, -100%);
+            opacity: 0;
+        }
+        }
+
+        .global-message.show {
+            animation: slideInDown 0.3s forwards;
+        }
+
+        .global-message.hiding {
+            animation: slideOutUp 0.3s forwards;
+        }
+
+
         /* -------------------------------------------------------------------------------*/
 
 

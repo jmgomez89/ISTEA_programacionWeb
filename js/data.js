@@ -20,6 +20,7 @@ const cartContainer = document.getElementById('cart');
 const totalCart = document.getElementById('cart-total');
 const cartInfo = document.getElementById('cart-info');
 
+
 let editingRecordId = null;
 let products = [];
 
@@ -178,7 +179,7 @@ async function uploadImageToImgBB(file) {
     throw new Error(`Error al subir imagen: ${errorData.error?.message || 'Desconocido'}`);
   }
   const result = await response.json();
-  return result.data.url; // URL pública de la imagen
+  return result.data.url; 
 };
 
 //Eliminar producto de Airtable
@@ -268,27 +269,45 @@ async function updateProductInAirtable(recordId, fields) {
 
 //Mostrar mensaje
 
-  function showMessage(text, type) {
-    messageDiv.textContent = text;
-    messageDiv.className = `form-message ${type}`;
-  }
+  // function showMessage(text, type) {
+  //   messageDiv.textContent = text;
+  //   messageDiv.className = `form-message ${type}`;
+  // };
+
+function showMessage(message, type) {
+  const messageEl = document.getElementById('global-message');
+  const types = ['success', 'warning', 'error'];
+  if (!types.includes(type)) type = 'success';
+
+  messageEl.classList.remove('hiding');
+  messageEl.textContent = message;
+  messageEl.className = `global-message ${type} show`;
+
+  setTimeout(() => {
+    messageEl.classList.add('hiding');
+    setTimeout(() => {
+      messageEl.classList.remove('show', 'hiding');
+      messageEl.classList.add('hidden');
+    }, 300); 
+  }, 4000);
+}
 
 //Carrito de compras (localStorage)
 
   function getCart() {
     const data = localStorage.getItem('cart');
     return data ? JSON.parse(data) : [];
-  }
+  };
 
   function saveCart(cart) {
     localStorage.setItem('cart', JSON.stringify(cart));
-  }
+  };
 
   function updateCartBadge() {
     const cart = getCart();
     const total = cart.reduce((sum, item) => sum + item.quantity, 0);
     document.getElementById('cart-badge').textContent = `🛒 (${total})`;
-  }
+  };
 
   function addToCart(product) {
   const cart = getCart();
@@ -296,20 +315,30 @@ async function updateProductInAirtable(recordId, fields) {
 
   if (existing) {
     if (existing.quantity + 1 > product.stock) {
-      alert(`Solo hay ${product.stock} unidades disponibles de "${product.name}".`);
+      showMessage(`Solo hay ${product.stock} unidades disponibles de "${product.name}".`, 'warning');
       return;
     }
     existing.quantity += 1;
   } else {
-    // Nuevo producto
     if (product.stock <= 0) {
-      alert('Producto sin stock.');
+      showMessage('Producto sin stock.', 'warning');
       return;
     }
     cart.push({ ...product, quantity: 1 });
-  }
+  };
 
   saveCart(cart);
   updateCartBadge();
-  alert(`${product.name} agregado al carrito.`);
+  showMessage(`${product.name} agregado al carrito.`, 'success');
+};
+
+
+//Formato de Precio
+
+function formatPrice(price) {
+  return new Intl.NumberFormat('es-AR', {
+    style: 'currency',
+    currency: 'ARS',
+    minimumFractionDigits: 0
+  }).format(price);
 }

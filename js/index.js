@@ -50,13 +50,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Renderizado de productos
 
-function formatPrice(price) {
-  return new Intl.NumberFormat('es-AR', {
-    style: 'currency',
-    currency: 'ARS',
-    minimumFractionDigits: 0
-  }).format(price);
-}
 
 function cardProducts(products) {
     return `
@@ -90,12 +83,11 @@ function filterAndRenderProducts(searchTerm) {
     prop[0].style.display = 'block';
     renderProducts();
     return;
-  }
+  };
 
   const term = searchTerm.toLowerCase();
   const filteredProducts = products.filter(product => 
-    product.name.toLowerCase().includes(term) || 
-    product.details.toLowerCase().includes(term)
+    product.name.toLowerCase().includes(term) || product.details.toLowerCase().includes(term)
   );
 
   if (filteredProducts.length === 0) {
